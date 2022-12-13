@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Python 之禅 ( Zen of Python )最早由 Tim Peters 于 1999 年发表于 Python 邮件列表中，它包含了影响 Python 编程语言设计的 19 条软件编写原则。在最初及后来的一些版本中，一共包含 20 条。其中第 20 条是“ 这一条留空（…）请 Guido 来填写 “这留空的一条从未公布也可能并不存在。 Python 之禅作为一个信息条款也被录入 Pyth">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Zen Of Python">
+<meta property="og:url" content="http://example.com/2022/12/13/The-Zen-Of-Python/index.html">
+<meta property="og:site_name" content="IaI">
+<meta property="og:description" content="Python 之禅 ( Zen of Python )最早由 Tim Peters 于 1999 年发表于 Python 邮件列表中，它包含了影响 Python 编程语言设计的 19 条软件编写原则。在最初及后来的一些版本中，一共包含 20 条。其中第 20 条是“ 这一条留空（…）请 Guido 来填写 “这留空的一条从未公布也可能并不存在。 Python 之禅作为一个信息条款也被录入 Pyth">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/The-Zen-Of-Python/1.png">
+<meta property="og:image" content="http://example.com/The-Zen-Of-Python/2.png">
+<meta property="article:published_time" content="2022-12-13T13:39:23.000Z">
+<meta property="article:modified_time" content="2022-12-13T13:40:28.936Z">
+<meta property="article:author" content="ppanger">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/The-Zen-Of-Python/1.png">
+
+<link rel="canonical" href="http://example.com/2022/12/13/The-Zen-Of-Python/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>The Zen Of Python | IaI</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">IaI</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/13/The-Zen-Of-Python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ppanger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IaI">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          The Zen Of Python
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-12-13 21:39:23 / Modified: 21:40:28" itemprop="dateCreated datePublished" datetime="2022-12-13T21:39:23+08:00">2022-12-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="Python-之禅-Zen-of-Python"><a href="#Python-之禅-Zen-of-Python" class="headerlink" title="Python 之禅 ( Zen of Python )"></a>Python 之禅 ( <strong>Zen of Python</strong> )</h4><p>最早由 <strong>Tim Peters</strong> 于 <strong>1999</strong> 年发表于 Python 邮件列表中，它包含了影响 Python 编程语言设计的 19 条软件编写原则。在最初及后来的一些版本中，一共包含 20 条。其中第 20 条是<br><strong>“ 这一条留空（…）请 Guido 来填写 “</strong><br>这留空的一条从未公布也可能并不存在。</p>
+<p>Python 之禅作为一个信息条款也被录入 Python 增强建议(Python Enhancement Proposals)（<strong>PEP</strong>）的第 20 条，在 Python 语言的官方网站也能找到。</p>
+<p>此外，关于 Python 之禅，还有一件趣事。</p>
+<p>在 2001 召开第十届国际 Python 峰会（IPC 10，Pycon 的前身）前夕，会议主办方希望定制一件 T 恤，并绞尽脑汁地从投稿的标语中选择了一条 <strong>“import this”</strong> 。</p>
+<p>然后，他们决定将这个语句实现在 Python 解释器中，于是将 Python 之禅的内容进行简单加密后放入到了 Python 2.2.1 中的 this.py 库当中。如果你在 Python 的解释器中输入:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> this </span><br></pre></td></tr></table></figure>
+<p>就会显示出来：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">The Zen of Python, by Tim Peters</span><br><span class="line"></span><br><span class="line">Beautiful <span class="keyword">is</span> better than ugly.</span><br><span class="line">Explicit <span class="keyword">is</span> better than implicit.</span><br><span class="line">Simple <span class="keyword">is</span> better than <span class="built_in">complex</span>.</span><br><span class="line">Complex <span class="keyword">is</span> better than complicated.</span><br><span class="line">Flat <span class="keyword">is</span> better than nested.</span><br><span class="line">Sparse <span class="keyword">is</span> better than dense.</span><br><span class="line">Readability counts.</span><br><span class="line">Special cases aren<span class="string">&#x27;t special enough to break the rules.</span></span><br><span class="line"><span class="string">Although practicality beats purity.</span></span><br><span class="line"><span class="string">Errors should never pass silently.</span></span><br><span class="line"><span class="string">Unless explicitly silenced.</span></span><br><span class="line"><span class="string">In the face of ambiguity, refuse the temptation to guess.</span></span><br><span class="line"><span class="string">There should be one-- and preferably only one --obvious way to do it.</span></span><br><span class="line"><span class="string">Although that way may not be obvious at first unless you&#x27;</span>re Dutch.</span><br><span class="line">Now <span class="keyword">is</span> better than never.</span><br><span class="line">Although never <span class="keyword">is</span> often better than *right* now.</span><br><span class="line">If the implementation <span class="keyword">is</span> hard to explain, it<span class="string">&#x27;s a bad idea.</span></span><br><span class="line"><span class="string">If the implementation is easy to explain, it may be a good idea.</span></span><br><span class="line"><span class="string">Namespaces are one honking great idea -- let&#x27;</span>s do more of those!</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>美观胜于丑陋(Beautiful is better than ugly.)</li>
+<li>明确胜于隐晦(Explicit is better than implicit.)</li>
+<li>简单胜过复杂(Simple is better than complex.)</li>
+<li>复杂胜过错综复杂(Complex is better than complicated.)</li>
+<li>扁平胜过嵌套(Flat is better than nested.)</li>
+<li>稀疏胜过密集(Sparse is better than dense.)</li>
+<li>可读性很重要(Readability counts.)</li>
+<li>特殊情况不足以违反规则(Special cases aren’t special enough to break the rules.)</li>
+<li>虽然，实用性胜过纯洁性(Although practicality beats purity.)</li>
+<li>错误绝不应该悄悄传递(Errors should never pass silently.)</li>
+<li>除非显式消除(Unless explicitly silenced.)</li>
+<li>面对歧义，要拒绝猜测的诱惑(In the face of ambiguity, refuse the temptation to guess.)</li>
+<li>尽量找一种，最好是唯一一种明显的解决方案(There should be one - and preferably only one - obvious way to do it.)</li>
+<li>虽然这种方式一开始可能并不明显（除非你是荷兰人）(Although that way may not be obvious at first unless you’re Dutch.)</li>
+<li>现在有总比永远没有好(Now is better than never.)</li>
+<li>虽然将来总比现在好(Although never is often better than right now.)</li>
+<li>如果一个实现难以解释，那就是个坏思路(If the implementation is hard to explain, it’s a bad idea.)</li>
+<li>如果一个实现易于解释，那它可能是一个好思路(If the implementation is easy to explain, it may be a good idea.)</li>
+<li>命名空间是一个非常棒的想法，让我们做更多的命名空间！(Namespaces are one honking great idea—let’s do more of those!)</li>
+</ul>
+<p>比较恶搞的是，其实 this 模块的代码完全违背了这些原则，大家一起来围观：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">s  =   <span class="string">&quot;&quot;&quot; Gur Mra bs Clguba, ol Gvz Crgref</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">Ornhgvshy vf orggre guna htyl.</span></span><br><span class="line"><span class="string">Rkcyvpvg vf orggre guna vzcyvpvg.</span></span><br><span class="line"><span class="string">Fvzcyr vf orggre guna pbzcyrk.</span></span><br><span class="line"><span class="string">Pbzcyrk vf orggre guna pbzcyvpngrq.</span></span><br><span class="line"><span class="string">Syng vf orggre guna arfgrq.</span></span><br><span class="line"><span class="string">Fcnefr vf orggre guna qrafr.</span></span><br><span class="line"><span class="string">Ernqnovyvgl pbhagf.</span></span><br><span class="line"><span class="string">Fcrpvny pnfrf nera&#x27;g fcrpvny rabhtu gb oernx gur ehyrf.</span></span><br><span class="line"><span class="string">Nygubhtu cenpgvpnyvgl orngf chevgl.</span></span><br><span class="line"><span class="string">Reebef fubhyq arire cnff fvyragyl.</span></span><br><span class="line"><span class="string">Hayrff rkcyvpvgyl fvyraprq.</span></span><br><span class="line"><span class="string">Va gur snpr bs nzovthvgl, ershfr gur grzcgngvba gb thrff.</span></span><br><span class="line"><span class="string">Gurer fubhyq or bar-- naq cersrenoyl bayl bar --boivbhf jnl gb qb vg.</span></span><br><span class="line"><span class="string">Nygubhtu gung jnl znl abg or boivbhf ng svefg hayrff lbh&#x27;er Qhgpu.</span></span><br><span class="line"><span class="string">Abj vf orggre guna arire.</span></span><br><span class="line"><span class="string">Nygubhtu arire vf bsgra orggre guna *evtug* abj.</span></span><br><span class="line"><span class="string">Vs gur vzcyrzragngvba vf uneq gb rkcynva, vg&#x27;f n onq vqrn.</span></span><br><span class="line"><span class="string">Vs gur vzcyrzragngvba vf rnfl gb rkcynva, vg znl or n tbbq vqrn.</span></span><br><span class="line"><span class="string">Anzrfcnprf ner bar ubaxvat terng vqrn -- yrg&#x27;f qb zber bs gubfr! &quot;&quot;&quot;</span></span><br><span class="line"> </span><br><span class="line">d = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> (<span class="number">65</span>, <span class="number">97</span>):</span><br><span class="line">     <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">26</span>):</span><br><span class="line">        d[<span class="built_in">chr</span>(i + c)] = <span class="built_in">chr</span>((i + <span class="number">13</span>) % <span class="number">26</span> + c)</span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&quot;</span>.join([d.get(c, c) <span class="keyword">for</span> c <span class="keyword">in</span> s]))</span><br></pre></td></tr></table></figure>
+
+<p>这完全是密码破解嘛！是故意设计成违背 <strong>PEP20</strong> 条原则吗？😄</p>
+<p>为了方便大家查阅，蓬蓬用 <strong>Processing</strong> 画了两幅画送给大家：</p>
+<p><img src="/The-Zen-Of-Python/1.png"></p>
+<p><img src="/The-Zen-Of-Python/2.png"></p>
+<p>附带源码给大家做参考：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">setup</span>():</span><br><span class="line">    <span class="comment"># 窗口大小</span></span><br><span class="line">    size(<span class="number">900</span>,<span class="number">1200</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 背景颜色</span></span><br><span class="line">    background(<span class="number">200</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 生成图片    </span></span><br><span class="line">    <span class="comment"># drawZen() </span></span><br><span class="line">    drawZenCn() </span><br><span class="line">    drawCircle()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 查看一下系统可用的字体（调试用）</span></span><br><span class="line">    <span class="built_in">print</span>(PFont.<span class="built_in">list</span>())</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 保存图片</span></span><br><span class="line">    save(<span class="string">&quot;the_zen_of_python_cn.png&quot;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Python之禅 英文版</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">drawZen</span>():    </span><br><span class="line">    noStroke()   </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 利用 Processing 自带的 “创建字体” 工具创建合适的字体</span></span><br><span class="line">    <span class="comment"># 标题</span></span><br><span class="line">    f = loadFont(<span class="string">&quot;Carlito-Bold-48.vlw&quot;</span>)</span><br><span class="line">    textFont(f)</span><br><span class="line">    text(<span class="string">&quot;The Zen of Python&quot;</span>, <span class="number">250</span>, <span class="number">120</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 作者</span></span><br><span class="line">    f = loadFont(<span class="string">&quot;Carlito-24.vlw&quot;</span>)</span><br><span class="line">    textFont(f)</span><br><span class="line">    fill(<span class="number">10</span>, <span class="number">150</span>)</span><br><span class="line">    text(<span class="string">&quot;by Tim Peters&quot;</span>, <span class="number">480</span>, <span class="number">170</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 正文</span></span><br><span class="line">    f = loadFont(<span class="string">&quot;Carlito-24.vlw&quot;</span>)</span><br><span class="line">    textFont(f)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Python之禅列表</span></span><br><span class="line">    zens = [</span><br><span class="line">            <span class="string">&quot;Beautiful is better than ugly.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Explicit is better than implicit.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Simple is better than complex.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Complex is better than complicated.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Flat is better than nested.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Sparse is better than dense.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Sparse is better than dense.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Special cases aren&#x27;t special enough to break the rules.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Although practicality beats purity.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Errors should never pass silently.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Unless explicitly silenced.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;In the face of ambiguity, refuse the temptation to guess.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;There should be one-- and preferably only one --obvious way to do it.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Although that way may not be obvious at first unless you&#x27;re Dutch.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Now is better than never.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Although never is often better than *right* now.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;If the implementation is hard to explain, it&#x27;s a bad idea.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;If the implementation is easy to explain, it may be a good idea.&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Namespaces are one honking great idea -- let&#x27;s do more of those!&quot;</span></span><br><span class="line">            ]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 循环创建文本</span></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(zens)):</span><br><span class="line">        <span class="comment"># 隔行设置不同透明度</span></span><br><span class="line">        <span class="keyword">if</span> n%<span class="number">2</span>==<span class="number">0</span>:</span><br><span class="line">            fill(<span class="number">10</span>,<span class="number">100</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            fill(<span class="number">10</span>,<span class="number">150</span>)</span><br><span class="line">        </span><br><span class="line">        text(zens[n], <span class="number">120</span>, <span class="number">300</span>+n*<span class="number">30</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Python之禅 中文版</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">drawZenCn</span>():    </span><br><span class="line">    noStroke()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 标题</span></span><br><span class="line">    f = createFont(<span class="string">&quot;楷体&quot;</span>, <span class="number">54</span>)</span><br><span class="line">    textFont(f)</span><br><span class="line">    text(<span class="string">u&quot;Python 之禅&quot;</span>, <span class="number">300</span>, <span class="number">120</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 正文</span></span><br><span class="line">    f = createFont(<span class="string">&quot;楷体&quot;</span>, <span class="number">24</span>)</span><br><span class="line">    textFont(f)</span><br><span class="line">    fill(<span class="number">10</span>, <span class="number">150</span>)</span><br><span class="line">    text(<span class="string">u&quot;作者：Tim Peters&quot;</span>, <span class="number">350</span>, <span class="number">170</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 正文</span></span><br><span class="line">    f = createFont(<span class="string">&quot;楷体&quot;</span>, <span class="number">24</span>)</span><br><span class="line">    textFont(f)    </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Python之禅列表</span></span><br><span class="line">    zens_cn = [</span><br><span class="line">                <span class="string">u&quot;美丽胜过丑陋。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;显式优于隐式。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;简单胜于复杂。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;复杂胜于复杂。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;扁平优于嵌套。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;稀疏胜于密集。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;稀疏胜于密集。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;特殊情况不足以打破规则。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;虽然实用性胜过纯粹性。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;错误永远不应无声地传递。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;除非明确沉默。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;面对模棱两可的问题,拒绝猜测。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;应该有一种——最好只有一种——显而易见的方式来实现。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;虽然这种方式一开始可能不明显,除非你是荷兰人。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;现在比永远都好。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;虽然永远不会比现在更好。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;如果实施很难解释,那是个坏主意。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;如果实施很容易解释,这可能是一个好主意。&quot;</span>,</span><br><span class="line">                <span class="string">u&quot;命名空间是一个非常棒的主意——让我们做更多这样的事情吧！&quot;</span></span><br><span class="line">                ]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 循环创建文本</span></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(zens_cn)):</span><br><span class="line">        <span class="comment"># 隔行设置不同透明度</span></span><br><span class="line">        <span class="keyword">if</span> n%<span class="number">2</span>==<span class="number">0</span>:</span><br><span class="line">            fill(<span class="number">10</span>,<span class="number">100</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            fill(<span class="number">10</span>,<span class="number">150</span>)</span><br><span class="line">        </span><br><span class="line">        text(zens_cn[n], <span class="number">120</span>, <span class="number">300</span>+n*<span class="number">30</span>)</span><br><span class="line">        </span><br><span class="line"><span class="comment"># 绘制渐变圆 Logo</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">drawCircle</span>():    </span><br><span class="line">    translate(width/<span class="number">2</span>-<span class="number">120</span>, height/<span class="number">2</span>+<span class="number">450</span>)</span><br><span class="line">    </span><br><span class="line">    n = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">8</span>):          </span><br><span class="line">        <span class="keyword">if</span> i&gt;<span class="number">4</span>:</span><br><span class="line">            n -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            n += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        fill(<span class="number">30</span>, n*<span class="number">20</span>)</span><br><span class="line">            </span><br><span class="line">        ellipse(i*<span class="number">30</span>, <span class="number">0</span>, <span class="number">150</span>, <span class="number">150</span>)</span><br><span class="line">        </span><br><span class="line"><span class="comment"># 循环模块留空</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">draw</span>():</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>参考链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/gzlaiyonghao/article/details/2151918"><em>《Python之禅》的翻译和解释</em></a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/351067124"><em>Python 之禅 | Linux 中国</em></a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/08/spider/" rel="prev" title="spider">
+      <i class="fa fa-chevron-left"></i> spider
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-%E4%B9%8B%E7%A6%85-Zen-of-Python"><span class="nav-number">1.</span> <span class="nav-text">Python 之禅 ( Zen of Python )</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ppanger</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ppanger</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
