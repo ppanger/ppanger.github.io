@@ -145,6 +145,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/25/MoviePy%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%B8%AA%E8%A7%86%E9%A2%91%E8%BF%9E%E6%8E%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ppanger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IaI">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/25/MoviePy%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%B8%AA%E8%A7%86%E9%A2%91%E8%BF%9E%E6%8E%A5/" class="post-title-link" itemprop="url">MoviePy实现多个视频连接</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-12-25 11:17:36 / Modified: 11:52:26" itemprop="dateCreated datePublished" datetime="2022-12-25T11:17:36+08:00">2022-12-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>MoviePy</strong> 是一个用于视频编辑的Python模块，它可被用于一些基本操作（如剪切、拼接、插入标题）、视频合成（即非线性编辑）、视频处理和创建高级特效。它可对大多数常见视频格式进行读写，包括GIF。</p>
+<p><em>这是来自<a target="_blank" rel="noopener" href="https://zulko.github.io/moviepy/">官网</a>的描述！</em></p>
+<p>今天我们用 MoviePy 实现多个短小视频的拼接操作。</p>
+<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>问题是这样的：在网上下载了《西行纪》的动画短片，不过是每集不超过15分钟的小短片，这样看起来比较累，所以考虑用 <strong>Pythoon</strong> 写段程序，把小短片进行拼接。说做就做！</p>
+<h4 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h4><p><em>第一个问题</em>，小短片的文件名大概都是这个样子：<br><img src="/MoviePy%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%B8%AA%E8%A7%86%E9%A2%91%E8%BF%9E%E6%8E%A5/1.jpg"></p>
+<p>怎么动态构造这样的文件名呢？</p>
+<p><em>第二个问题</em>，多个视频怎么拼接？</p>
+<p><em>第三个问题</em>，我们不想要每集开头的片花和结尾的片尾曲部分！</p>
+<p>OK！<strong>MoviePy</strong> 闪亮登场！</p>
+<h4 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h4><p><em>问题一</em>：</p>
+<p>可以看到，除了数字代表不同集数以外，都是固定的 <em>“西行纪xx.mp4”</em> 这样的格式。我们可以使用 Python 字符串中的 <strong>F</strong> 大法来实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># n 用代表集数的数字动态替换</span></span><br><span class="line"><span class="string">f&quot;西行纪<span class="subst">&#123;n&#125;</span>.mp4&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><em>问题二</em></p>
+<p>视频拼接，可以借助 MoviePy 的 <strong>concatenate_videoclips</strong> 子模块实现，只需要在程序开始加入以下语句：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> moviepy.editor <span class="keyword">import</span> concatenate_videoclips</span><br></pre></td></tr></table></figure>
+
+<p><em>问题三</em></p>
+<p>视频截取，可以通过 <strong>VideoFileClip</strong> 子模块的 <strong>subclip</strong> 方法来实现，只需要指定开始和结束的时间即可，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VideoFileClip(<span class="string">f&quot;西行纪1.mp4&quot;</span>).subclip(<span class="number">30</span>, <span class="number">180</span>)</span><br></pre></td></tr></table></figure>
+<p>上面的程序，就可以实现把 <em>“西行纪1.mp4”</em> 视频，从30秒至180秒截取出来！</p>
+<p><em>写出完整程序</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> moviepy.editor <span class="keyword">import</span> VideoFileClip, concatenate_videoclips</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始时间列表</span></span><br><span class="line">tms_s = [</span><br><span class="line">    <span class="number">40</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">    <span class="number">134</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 结束时间列表</span></span><br><span class="line">tms_e = [</span><br><span class="line">    <span class="number">712</span>,</span><br><span class="line">    <span class="number">804</span>,</span><br><span class="line">    <span class="number">737</span>,</span><br><span class="line">    <span class="number">727</span>,</span><br><span class="line">    <span class="number">718</span>,</span><br><span class="line">    <span class="number">726</span>,</span><br><span class="line">    <span class="number">732</span>,</span><br><span class="line">    <span class="number">712</span>,</span><br><span class="line">    <span class="number">748</span>,</span><br><span class="line">    <span class="number">740</span>,</span><br><span class="line">    <span class="number">742</span>,</span><br><span class="line">    <span class="number">727</span>,</span><br><span class="line">    <span class="number">755</span>,</span><br><span class="line">    <span class="number">748</span>,</span><br><span class="line">    <span class="number">770</span>,</span><br><span class="line">    <span class="number">705</span>,</span><br><span class="line">    <span class="number">710</span>,</span><br><span class="line">    <span class="number">761</span>,</span><br><span class="line">    <span class="number">717</span>,</span><br><span class="line">    <span class="number">750</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 集数列表</span></span><br><span class="line">names = [</span><br><span class="line">    <span class="number">39</span>,</span><br><span class="line">    <span class="number">40</span>,</span><br><span class="line">    <span class="number">41</span>,</span><br><span class="line">    <span class="number">42</span>,</span><br><span class="line">    <span class="number">43</span>,</span><br><span class="line">    <span class="number">44</span>,</span><br><span class="line">    <span class="number">45</span>,</span><br><span class="line">    <span class="number">46</span>,</span><br><span class="line">    <span class="number">47</span>,</span><br><span class="line">    <span class="number">48</span>,</span><br><span class="line">    <span class="number">49</span>,</span><br><span class="line">    <span class="number">50</span>,</span><br><span class="line">    <span class="number">51</span>,</span><br><span class="line">    <span class="number">52</span>,</span><br><span class="line">    <span class="number">53</span>,</span><br><span class="line">    <span class="number">54</span>,</span><br><span class="line">    <span class="number">55</span>,</span><br><span class="line">    <span class="number">56</span>,</span><br><span class="line">    <span class="number">57</span>,</span><br><span class="line">    <span class="number">58</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># VideoFileClip 对象列表</span></span><br><span class="line">movies = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 循环取出每集集数，以及对应的开始和结束时间</span></span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(names)):</span><br><span class="line">    v = VideoFileClip(<span class="string">f&quot;data/西行纪<span class="subst">&#123;names[n]&#125;</span>.mp4&quot;</span>).subclip(tms_s[n], tms_e[n])</span><br><span class="line">    <span class="comment"># 添加进 VideoFileClip 对象列表</span></span><br><span class="line">    movies.append(v)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始进行拼接</span></span><br><span class="line">final_clip = concatenate_videoclips(movies)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存</span></span><br><span class="line">final_clip.write_videofile(<span class="string">&quot;西行纪39-58.mp4&quot;</span>)</span><br><span class="line">final_clip.ipython_display()</span><br></pre></td></tr></table></figure>
+
+<p>需要说明的是，上面的开始和结束时间列表，只能用笨办法，手工打开每个视频来确认需要截取的开始和结束时间，这个比较费眼费手一些！ :o</p>
+<p>上面是 <strong>39</strong>-<strong>58</strong> 集的拼接程序，其它以此类推！</p>
+<p><img src="/MoviePy%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%B8%AA%E8%A7%86%E9%A2%91%E8%BF%9E%E6%8E%A5/2.jpg"><br>还有一点就是：拼接过程还是很费CPU和内存的，所以多点耐心等待，最后完成的视频，画质很棒，给 <strong>MoviePy</strong> 一个大大的赞！</p>
+<p>小伙伴们，想不想也自己动手试试！ :)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/13/The-Zen-Of-Python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -590,7 +676,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
